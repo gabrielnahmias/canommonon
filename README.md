@@ -31,19 +31,19 @@ Examples
 
 As simple as it gets (of course, you'll change the URL prefix):
 
-```http://localhost/?first=a,b,c&second=a,b,c,d,e```
+``` http://localhost/?first=a,b,c&second=a,b,c,d,e ```
 
 Here it is with some options:
 
-```http://localhost/?first=a,b,c&second=a,b,c,d,e&debug&hideform```
+``` http://localhost/?first=a,b,c&second=a,b,c,d,e&debug&hideform ```
 
 That would show some debugging information and remove the initial form.  How about some JSON?
 
-```http://localhost/?first=a,b,c&second=a,b,c,d,e&format=json```
+``` http://localhost/?first=a,b,c&second=a,b,c,d,e&format=json ```
 
 Yup.  It's that easy!  That would produce this:
 
-```{ common: ["a", "b", "c"] }```
+``` { common: ["a", "b", "c"] } ```
 
 License
 -----------
