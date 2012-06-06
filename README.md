@@ -6,8 +6,8 @@ Canommonon
 What can it do?
 -----------
 
-* Shows you the commonality between two sets of data
-* Can be returned in several different formats.
+* Compare two sets of data with two different methods
+* Give results in several different formats.
 * Makes you go, _"WHOA!"_
 
 How to use it
@@ -15,7 +15,7 @@ How to use it
 
 Upload it or otherwise store it on a server with at least PHP5 installed and visit the page!  You can use the form or call it with other scripts, etc.
 
-There are 4 different options (```GET``` variables) you can set.  The first two are required.  They are:
+There are 6 different options (```GET``` variables) you can set.  The first two are required.  They are:
 
 1.  **first** - first set of comma-separated values.
 2.  **second** - second set of comma-separated values.
@@ -25,6 +25,7 @@ These are extra:
 3.  **debug** - show debugging (only in HTML mode).
 4.  **format** - the format in which the results should be (JSON, text, etc.).
 5.  **hideform** - hide form when showing HTML results.
+6.	**operation** (default: common) - the operation to perform (common or uncommon).
 
 Examples
 -----------
