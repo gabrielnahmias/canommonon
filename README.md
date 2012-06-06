@@ -1,4 +1,4 @@
-Tweeter
+Canommonon
 =============
 
 **Canommonon** is a **PHP _script_** that finds the common values between two sets of data (soon to be as many as you'd like).
