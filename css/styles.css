@@ -1,0 +1,207 @@
+abbr {
+	
+	cursor: pointer;
+	
+}
+
+body {
+	
+	color: #333333;
+	
+	font: 13px Verdana, Geneva, sans-serif;
+	
+	padding: 20px;
+	
+	text-align: center;
+	
+}
+	
+	body > div {
+		
+		margin-bottom: 30px;
+		
+	}
+	
+code {
+	
+	display: block;
+	
+	line-height: 20px;
+	
+	margin-top: 10px;
+	
+	text-align: justify;
+	
+}
+
+fieldset {
+	
+	border: 1px solid #AAAAAA;
+	
+	border-radius: 10px;
+	
+	margin-bottom: 50px;
+	
+	outline: none;
+	
+	padding: 20px;
+	
+	text-align: left;
+	
+}
+	
+	fieldset.centered {
+		
+		width: 890px;
+		
+	}
+		
+		fieldset.centered.code {
+			
+			width: 452px;
+			
+		}
+	
+	fieldset legend {
+		
+		color: #AAAAAA;
+		
+	}
+
+form div.centered {
+	
+	width: 859px;
+	
+}
+
+h2 {
+	
+	font-weight: normal;
+	
+	margin: 0 0 30px;
+	background:#
+	
+}
+
+input[type="submit"],
+input:not([type="button"]):not([type="reset"]):not([type="submit"]) {
+	
+	height: 50px;
+	
+	margin-top: 10px;
+	
+	width: 100%;
+	
+}
+
+label {
+	
+	font-weight: bold;
+	
+}
+	
+	label.title {
+		
+		display: block;
+		
+		margin-bottom: 10px;
+		
+	}
+
+p {
+	
+	margin: 0 0 15px;
+	
+}
+
+p:last-child {
+	
+	margin-bottom: 0;
+	
+}
+
+.bracket {
+	
+	color: #FF8000;
+	
+}
+
+.centered {
+	
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+.debugging {
+	
+	background: none repeat scroll 0 0 #FBFCB5;
+	
+	border: 1px solid #AA0000;
+	
+	border-radius: 20px 20px 20px 20px;
+	
+	margin-left: auto;
+	
+	margin-right: auto;
+	
+	padding: 10px;
+	
+	width: 300px;
+	
+}
+
+.keyword,
+.variable {
+	
+	font-weight: bold;
+	
+}
+
+.keyword {
+	
+	color: #0033CC;
+	
+}
+
+.operator {
+	
+	color: #F00;
+	
+}
+
+.right {
+	
+	display: inline-block;
+	
+}
+
+.inline {
+	
+	display: inline;
+	
+}
+
+.red {
+	
+	color: #FF0000;
+	
+}
+
+.string {
+	
+	color: #009900;
+	
+}
+
+.underlined {
+	
+	text-decoration: underline;
+	
+}
+
+.variable {
+	
+	color: #90F;
+	
+}
