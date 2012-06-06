@@ -70,7 +70,7 @@ fieldset {
 
 form div.centered {
 	
-	width: 859px;
+	width: 871px;
 	
 }
 
@@ -117,6 +117,40 @@ p {
 p:last-child {
 	
 	margin-bottom: 0;
+	
+}
+
+select {
+	
+	margin-top: 10px;
+	
+	padding: 5px;
+	
+	width: 100%;
+	
+}
+	
+	select option {
+		
+		font-style: italic;
+		
+		margin-left: 20px;
+		
+	}
+	
+	select option[value=""] {
+		
+		font-style: normal;
+		
+		font-weight: bold;
+		
+		margin-left: 0;
+		
+	}
+
+textarea {
+	
+	padding: 5px;
 	
 }
 
