@@ -2,7 +2,9 @@
 
 function displayArray($a, $bAsCode, $sLanguage, $aRange) {
 	
-	// Display array as either a plain list or PHP code for an array.
+	// Display array as either a plain list or code for an array.
+	
+	$iCount = 0;
 	
 	if ( !isset($bAsCode) )
 		$bAsCode = false;
@@ -15,8 +17,6 @@ function displayArray($a, $bAsCode, $sLanguage, $aRange) {
 	if ( isset($aRange) )
 		$a = array_slice($a, $aRange[0], $aRange[1]);
 	
-	$iCount = 0;
-	
 	if ($bAsCode): ?><code><span class="variable"><?php if ($sLanguage == "php"): ?>$<?php endif; ?>aCodes</span> <span class="operator">=</span> <span class="keyword"><?php if ($sLanguage == "php"): ?>a<?php elseif($sLanguage == "vb"): ?>A<?php endif; ?>rray</span><span class="bracket">(</span><?php endif;
 	
 	foreach($a as $sValue) {
@@ -27,10 +27,10 @@ function displayArray($a, $bAsCode, $sLanguage, $aRange) {
 		
 		if ($bAsCode): ?>"</span><?php endif;
 		
+		$iCount++;
+		
 		if ( array_key_exists($iCount + 1, $a) )
 			print ", ";
-		
-		$iCount++;
 		
 	}
 	
@@ -40,7 +40,7 @@ function displayArray($a, $bAsCode, $sLanguage, $aRange) {
 
 function lsort($a, $b) {
 	
-	// Function to sort by length
+	// Function to pass to usort that sorts by length.
 	
 	return strlen($b) - strlen($a);
 	
