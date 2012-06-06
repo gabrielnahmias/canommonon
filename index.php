@@ -110,7 +110,7 @@ if ( !empty($_GET) ) {
 
 <h2>
 	
-	<label class="red title underlined"><?=$sAdj?> Values:</label>
+	<label class="red title underlined"><?=$sAdj?> Values (<?=count($aResults)?>):</label>
 	
 	<div>
 		
