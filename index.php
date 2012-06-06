@@ -203,35 +203,35 @@ if ( !isset( $_GET['format'] ) ):
 		
 ?>
 
-<fieldset class="centered">
+<form action="" method="get">
 	
-	<legend>Value Sets to Compare</legend>
-	
-	<form action="" method="get">
+	<fieldset class="centered">
 		
-		<div class="centered">
+		<legend>Value Sets to Compare</legend>
 			
-			<textarea cols="50" name="first" placeholder="Enter first set of comma-separated values" rows="15"><?=@$first?></textarea>
-			
-			<textarea cols="50" name="second" placeholder="Enter second set of comma-delimited values" rows="15"><?=@$second?></textarea>
-			
-			<select name="operation">
+			<div class="centered">
 				
-				<option value="">Select comparative operation</option>
+				<textarea cols="50" name="first" placeholder="Enter first set of comma-separated values" rows="15"><?=@$first?></textarea>
 				
-				<option<?php if ( $operation == "common" || !isset($operation) ): ?> selected="selected"<?php endif; ?> value="common">Show common values</option>
+				<textarea cols="50" name="second" placeholder="Enter second set of comma-delimited values" rows="15"><?=@$second?></textarea>
 				
-				<option<?php if ($operation == "uncommon"): ?> selected="selected"<?php endif; ?> value="uncommon">Show uncommon values</option>
+				<select name="operation">
+					
+					<option value="">Select comparative operation</option>
+					
+					<option<?php if ( $operation == "common" || !isset($operation) ): ?> selected="selected"<?php endif; ?> value="common">Show common values</option>
+					
+					<option<?php if ($operation == "uncommon"): ?> selected="selected"<?php endif; ?> value="uncommon">Show uncommon values</option>
+					
+				</select>
 				
-			</select>
-			
-			<input type="submit" value="Compare" />
-			
-		</div>
+				<input type="submit" value="Compare" />
+				
+			</div>
 		
-	</form>
-	
-</fieldset>
+	</fieldset>
+
+</form>
 
 </body>
 
