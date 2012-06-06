@@ -53,4 +53,4 @@ Public domain
 Acknowledgements
 ------------
 
-Canommonon is a project by [Gabriel Nahmias](http://github.com/terrasoftlabs "Terrasoft's GitHub"), co-founder of Terrasoft.
+Canommonon is a project by [Gabriel Nahmias](mailto:gabriel@terrasoftlabs.com), co-founder of Terrasoft.
