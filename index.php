@@ -9,6 +9,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  * TODO: Make it so if there's more than one of a certain value it is somehow denoted in the results.
+ *		 Add Selectify to the results and code areas.
  *	
  */
 
@@ -41,7 +42,11 @@ if ( !empty($_GET) ) {
 	
 	import_request_variables("g");
 	
-	if ($operation == "common") {
+	if ( !isset($operation) || empty($operation) || $operation == "common" ) {
+		
+		// Kind of a weird grouping of logic but it works.
+		
+		$operation = "common";
 		
 		$sAdj = "Common";
 		
