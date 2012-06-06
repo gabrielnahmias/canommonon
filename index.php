@@ -41,6 +41,16 @@ if ( !empty($_GET) ) {
 	
 	import_request_variables("g");
 	
+	if ($operation == "common") {
+		
+		$sAdj = "Common";
+		
+	} else {
+		
+		$sAdj = "Uncommon";
+		
+	}
+	
 	if ( isset($format) )
 		$sFormat = strtolower($format);
 	
@@ -67,13 +77,21 @@ if ( !empty($_GET) ) {
 			
 		}
 		
-		// Find the intersection of the two sets of values.
+		// Compare the two sets of values.
 		
-		$aCommon = array_intersect($aFirst, $aSecond);
+		if ($operation == "common") {
+			
+			$aResults = array_intersect($aFirst, $aSecond);
+			
+		} else {
+					
+			$aResults = array_diff($aFirst, $aSecond);
+			
+		}
 		
 		// Sort the results by length.
 		
-		//usort($aCommon, 'lsort');
+		//usort($aResults, 'lsort');
 		
 	} else {
 		
@@ -87,11 +105,11 @@ if ( !empty($_GET) ) {
 
 <h2>
 	
-	<label class="red title underlined">Common Values:</label>
+	<label class="red title underlined"><?=$sAdj?> Values:</label>
 	
 	<div>
 		
-		<?php @displayArray($aCommon, false); ?>
+		<?php @displayArray($aResults, false); ?>
 		
 	</div>
 	
@@ -105,7 +123,7 @@ if ( !empty($_GET) ) {
 		
 		<strong>PHP:</strong>
 		
-		<?php @displayArray($aCommon, true); ?>
+		<?php @displayArray($aResults, true); ?>
 		
 	</p>
 	
@@ -113,7 +131,7 @@ if ( !empty($_GET) ) {
 		
 		<strong>Visual Basic:</strong>
 		
-		<?php @displayArray($aCommon, true, "vb"); ?>
+		<?php @displayArray($aResults, true, "vb"); ?>
 		
 	</p>
 
@@ -154,11 +172,11 @@ if ( !empty($_GET) ) {
 			if ($sFormat == "json")
 				print "{ common: [";
 			
-			foreach($aCommon as $sValue) {
+			foreach($aResults as $sValue) {
 				
 				print "\"$sValue\"";
 				
-				if ( array_key_exists($iCount + 1, $aCommon) )
+				if ( array_key_exists($iCount + 1, $aResults) )
 					print ", ";
 				
 				$iCount++;
@@ -182,17 +200,27 @@ if ( !isset( $_GET['format'] ) ):
 
 <fieldset class="centered">
 	
-	<legend>Value sets between which to find commonality</legend>
+	<legend>Value Sets to Compare</legend>
 	
 	<form action="" method="get">
 		
 		<div class="centered">
 			
-			<textarea cols="50" name="first" placeholder="Enter comma-separated values" rows="15"></textarea>
+			<textarea cols="50" name="first" placeholder="Enter first set of comma-separated values" rows="15"><?=@$first?></textarea>
 			
-			<textarea cols="50" name="second" placeholder="Enter comma-delimited values" rows="15"></textarea>
+			<textarea cols="50" name="second" placeholder="Enter second set of comma-delimited values" rows="15"><?=@$second?></textarea>
 			
-			<input type="submit" value="Find Commonality" />
+			<select name="operation">
+				
+				<option value="">Select comparative operation</option>
+				
+				<option<?php if ( $operation == "common" || !isset($operation) ): ?> selected="selected"<?php endif; ?> value="common">Show common values</option>
+				
+				<option<?php if ($operation == "uncommon"): ?> selected="selected"<?php endif; ?> value="uncommon">Show uncommon values</option>
+				
+			</select>
+			
+			<input type="submit" value="Compare" />
 			
 		</div>
 		
