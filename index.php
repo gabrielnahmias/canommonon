@@ -1,24 +1,37 @@
 <?php
 
-/**
- * Canommonon v1.0.0
+/*!
+ * Canommonon v1.1.0
  * http://github.com/terrasoftlabs/canommonon
  *
  * Copyright © 2012 Gabriel Nahmias.
  * Free to use under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  *
- * TODO: Make it so if there's more than one of a certain value it is somehow denoted in the results.
+ * TODO: *Add debugging output to all the output formats!!*
+ *		 Make it so if there's more than one of a certain value it is somehow denoted in the results.
  *		 Add Selectify to the results and code areas.
- *	
+ *		 Add sorting options
+ *		 
  */
 
 require "inc/functions.php";
 
 define("NAME", "Canommonon");
-define("VER", "1.0.0");
+define("VER", "1.1.0");
 
-if ( !isset( $_GET['format'] ) ):
+$operation = "";
+
+// Should move this and parse variables for everything appropriately?
+
+import_request_variables("g");
+
+if ( isset($format) && $format == "normal" )
+	unset($format);
+
+// If there's no format, display doctype, head, meta, title, and related tags.
+
+if ( !isset($format) ):
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -30,6 +43,11 @@ if ( !isset( $_GET['format'] ) ):
 
 <link href="css/styles.css" rel="stylesheet" type="text/css" />
 
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+<script src="js/jquery.selectify.min.js" type="text/javascript"></script>
+<script src="js/scripts.js" type="text/javascript"></script>
+
 </head>
 
 <body>
@@ -39,8 +57,6 @@ if ( !isset( $_GET['format'] ) ):
 endif;
 
 if ( !empty($_GET) ) {
-	
-	import_request_variables("g");
 	
 	if ( !isset($operation) || empty($operation) || $operation == "common" ) {
 		
@@ -55,6 +71,15 @@ if ( !empty($_GET) ) {
 		$sAdj = "Uncommon";
 		
 	}
+	
+	$bDuplicates = false;
+	$bShowCode = false;
+	
+	if ( isset($showduplicates) )
+		$bDuplicates = true;
+	
+	if ( isset($showcode) )
+		$bShowCode = true;
 	
 	if ( isset($format) )
 		$sFormat = strtolower($format);
@@ -86,11 +111,17 @@ if ( !empty($_GET) ) {
 		
 		if ($operation == "common") {
 			
-			$aResults = array_intersect($aFirst, $aSecond);
+			$aResults = array_intersect_exact($aFirst, $aSecond);
 			
 		} else {
 					
 			$aResults = array_diff($aFirst, $aSecond);
+			
+		}
+		
+		if (!$bDuplicates) {
+			
+			$aResults = array_unique($aResults);
 			
 		}
 		
@@ -103,6 +134,8 @@ if ( !empty($_GET) ) {
 		// Move error display here.
 		
 	}
+	
+	// If there is no format specified, output HTML.
 	
 	if ( !isset($sFormat) ):
 	
@@ -120,6 +153,8 @@ if ( !empty($_GET) ) {
 	
 </h2>
 
+<?php if ($bShowCode): ?>
+
 <fieldset class="centered code">
 	
 	<legend>Code for Arrays Containing these Values</legend>
@@ -134,6 +169,22 @@ if ( !empty($_GET) ) {
 	
 	<p>
 		
+		<strong>JavaScript:</strong>
+		
+		<?php @displayArray($aResults, true, "js"); ?>
+		
+	</p>
+	
+	<p>
+		
+		<strong>Ruby:</strong>
+		
+		<?php @displayArray($aResults, true, "rb"); ?>
+		
+	</p>
+	
+	<p>
+		
 		<strong>Visual Basic:</strong>
 		
 		<?php @displayArray($aResults, true, "vb"); ?>
@@ -141,6 +192,8 @@ if ( !empty($_GET) ) {
 	</p>
 
 </fieldset>
+
+<?php endif; ?>
 
 <?php
 	
@@ -181,10 +234,10 @@ if ( !empty($_GET) ) {
 				
 				print "\"$sValue\"";
 				
-				if ( array_key_exists($iCount + 1, $aResults) )
-					print ", ";
-				
 				$iCount++;
+				
+				if ( $iCount != count($aResults) )
+					print ", ";
 				
 			}
 			
@@ -197,10 +250,12 @@ if ( !empty($_GET) ) {
 	
 }
 
-if ( !isset( $_GET['format'] ) ):
+if ( !isset( $_GET['hideform'] ) ):
 	
-	if ( !isset( $_GET['hideform'] ) ):
-		
+	// I'm not sure which arrangement is correct; check hideform or format first.
+	
+	if ( empty($format) || $format == "normal" ):
+	
 ?>
 
 <form action="" method="get">
@@ -225,6 +280,28 @@ if ( !isset( $_GET['format'] ) ):
 					
 				</select>
 				
+				<div id="checkboxes">
+					
+					<input id="showduplicates" name="showduplicates" type="checkbox"<?php if ( isset($showduplicates) ): if ($showduplicates) mark("checkbox"); endif; ?> /><label for="showduplicates">Show duplicate values</label>
+					
+					<input id="hideform" name="hideform" type="checkbox"<?php if ( isset($hideform) ): if ($hideform) mark("checkbox"); endif; ?> /><label for="hideform">Hide form</label>
+					
+					<input id="showcode" name="showcode" type="checkbox"<?php if ( isset($showcode) ): if ($showcode) mark("checkbox"); endif; ?> /><label for="showcode">Show code</label>
+					
+					<input id="debug" name="debug" type="checkbox"<?php if ( isset($debug) ): if ($debug) mark("checkbox"); endif; ?> /><label for="debug">Debug</label>
+					
+				</div>
+				
+				<div id="radio_format">
+					
+					<label class="pointless">Return format:</label>
+					
+					<input id="format_normal" name="format" value="normal" type="radio"<?php if ( isset($format) ): if ($format == "text") mark("radio"); endif; ?> /><label for="format_normal">Normal</label>
+					<input id="format_json" name="format" value="json" type="radio"<?php if ( isset($format) ): if ($format == "json") mark("radio"); endif; ?> /><label for="format_json">JSON</label>
+					<input id="format_text" name="format" value="text" type="radio"<?php if ( isset($format) ): if ($format == "text") mark("radio"); endif; ?> /><label for="format_text">Text</label>
+					
+				</div>
+				
 				<input type="submit" value="Compare" />
 				
 			</div>
@@ -238,7 +315,7 @@ if ( !isset( $_GET['format'] ) ):
 </html>
 
 <?php
-		
+	
 	endif;
 	
 endif;
