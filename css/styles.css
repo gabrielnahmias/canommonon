@@ -84,7 +84,7 @@ h2 {
 }
 
 input[type="submit"],
-input:not([type="button"]):not([type="reset"]):not([type="submit"]) {
+input:not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="reset"]):not([type="submit"]) {
 	
 	height: 50px;
 	
@@ -94,9 +94,25 @@ input:not([type="button"]):not([type="reset"]):not([type="submit"]) {
 	
 }
 
+input[type="checkbox"] {
+	
+	margin-right: 5px;
+	
+}
+
+input[type="radio"] + label {
+	
+	font-weight: normal;
+	
+}
+
 label {
 	
+	cursor: pointer;
+	
 	font-weight: bold;
+	
+	vertical-align: top;
 	
 }
 	
@@ -154,6 +170,21 @@ textarea {
 	
 }
 
+#checkboxes {
+	
+	margin-right: 50px;
+	
+	padding: 10px 0 0;
+	
+}
+
+#checkboxes,
+#radio_format {
+	
+	display: inline-block;
+	
+}
+
 .bracket {
 	
 	color: #FF8000;
@@ -201,6 +232,12 @@ textarea {
 .operator {
 	
 	color: #F00;
+	
+}
+
+.pointless {
+	
+	cursor: default;
 	
 }
 
