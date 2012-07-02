@@ -145,7 +145,7 @@ if ( !empty($_GET) ) {
 	
 	<label class="red title underlined"><?=$sAdj?> Values (<?=count($aResults)?>):</label>
 	
-	<div>
+	<div id="results">
 		
 		<?php @displayArray($aResults, false); ?>
 		
