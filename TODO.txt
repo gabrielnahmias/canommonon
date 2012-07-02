@@ -1,0 +1,12 @@
+-	The presentation of the list and the programming language generated strings needs to be looked at
+	and cleaned up. - FIXED (I think)
+	
+-	Add options to form to hide stuff, choose format, etc.
+
+-	Allow data to be returned in plain text programming language (add option[s]?).
+
+-	Let additional sets of data be added by way of a plus sign icon which adds a new textbox.
+
+-	Add different output formats.
+
+-	
